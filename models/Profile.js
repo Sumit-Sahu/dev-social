@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
+
 const ProfileSchema = new mongoose.Schema({
     user: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'users'
     },
     handle: {
@@ -113,8 +114,6 @@ const ProfileSchema = new mongoose.Schema({
       type: Date,
       default: Date.now
     }
-  });
-  
 });
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);
