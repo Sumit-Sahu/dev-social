@@ -18,7 +18,8 @@ router.post('/', [
     .isEmpty(),
     body('email','please include a valid email').isEmail(),
     body('password','password should atleast 6 char').isLength({ min:6 })
-],async (req, res) => {
+],
+async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
