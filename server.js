@@ -19,6 +19,6 @@ app.use('/api/auth',require('./routes/api/auth'));
 app.use('/api/profile',require('./routes/api/profile'));
 app.use('/api/posts',require('./routes/api/posts'));
 
-port = process.env.port || 3000;
+PORT = process.env.PORT || 5000;
 
-app.listen(port,() => console.log(`listening on server ${port}`));
+app.listen(PORT,() => console.log(`listening on server ${PORT}`));
