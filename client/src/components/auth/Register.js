@@ -1,9 +1,11 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React, { Fragment, useState } from 'react'
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import {setAlert} from '../../actions/alert';
+import PropTypes from 'prop-types'
 
-
-const Register = () => {
+const Register = ({setAlert}) => {
     const [formData, setFormData] = useState({
         name:'',
         email:'',
@@ -18,27 +20,28 @@ const Register = () => {
     const onsubmit = async e => {
         e.preventDefault();
         if(password !== password2){
-            console.log('Password do not match');
+            setAlert('Password do not match', 'danger');
         } else {
-            console.log(formData);
-            const newUser = {
-                name,
-                email,
-                password
-            };
-            const config = {
-                headers:{ 
-                   'Content-Type':'application/json'
-                }
-            };
-            try {
-                const body = JSON.stringify(newUser);
-                console.log(newUser)
-                const response = await axios.post('/api/users', body, config);
-                console.log("response", response.data);
-            } catch (error) {
-                console.log(error);
-            }
+            console.log("Success");
+            // Api call using axios
+            // const newUser = {
+            //     name,
+            //     email,
+            //     password
+            // };
+            // const config = {
+            //     headers:{ 
+            //        'Content-Type':'application/json'
+            //     }
+            // };
+            // try {
+            //     const body = JSON.stringify(newUser);
+            //     console.log(newUser)
+            //     const response = await axios.post('/api/users', body, config);
+            //     console.log("response", response.data);
+            // } catch (error) {
+            //     console.log(error);
+            // }
         }
     }
     return (
@@ -99,5 +102,12 @@ const Register = () => {
     )
 }
 
-export default Register
+Register.prototype = {
+    setAlert: PropTypes.func.isRequired
+} 
+
+export default connect
+(null, 
+{ setAlert }
+)(Register);
 
